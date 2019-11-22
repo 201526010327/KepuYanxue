@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>科普产品</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/my-navbar.css">
+    <!--检索框-->
+    <link rel="stylesheet" href="../../css/buyfilter.css">
+    <!--排序框-->
+    <link rel="stylesheet" href="../../css/buysort.css">
+
+<!--        右边登录、推荐信息-->
+        <style>
+            .rigth-side{
+                padding:0 15px;
+                height: 1440px;
+            }
+
+            [v-cloak]{
+                display: none;
+            }
+        </style>
+</head>
+<body>
+<div id="main">
+    <!--导航栏-->
+<!--    <div style="position: fixed;top:50px;display:flex;justify-content:center;align-items:center;width: 100%;height: 300px;text-align:center;background:url('/images/head_pic.jpg');background-repeat: no-repeat;background-position:0 -50px;background-size:cover;z-index: -1">-->
+<!--        <img src="">-->
+<!--        <div><h1 style="font-size: 36px;color:#fff">Hello</h1></div>-->
+<!--    </div>-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- 下拉触发按钮 以及 商标-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">科普研学平台</a>
+            </div>
+            <!-- 适配手机，将部分栏目转至下拉导航-->
+            <div class="collapse navbar-collapse" id="collapse1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/product/kpcp/">科普产品 <span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="#">研学产品</a></li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
+
+<!--    头部图片-->
+    <div class="container-fluid" style="position:absolute;width:100%;height:240px;top:50px;padding:0;z-index: -1">
+        <img src="/images/8.png" style="width: 100%;height: 200px">
+    </div>
+
+    <!--主面板-->
+    <div class="container-fluid" style="background: #fff;margin-top: 50px;margin-top: 300px">
+        <div class="container">
+            <!-- 产品列表 -->
+            <div class="col-sm-9 col-xs-12">
+                <!-- 分类索引 -->
+                <div id="fenlei">
+                <div class="search-type-block" v-cloak>
+                    <div class="search-type-item">
+                        <strong class="item-hd">所在区域:</strong>
+                        <div class="item-bd">
+                            <div class="item-child">
+                                <div  class="child-block">
+                                    <ul class="list-inline child-list" ref="quyu">
+    <!--                                    v-for是将当前标签所有所有元素循环-->
+                                        <li class="item" >
+                                            <a href="javascript:;" @click="changeUrl('q0')" :class="{'active':isActive('q0')}">全部</a>
+                                        </li>
+                                        <li class="item" v-for="(item,index) in fenlei.quyu">
+                                            <a href="javascript:;" @click="changeUrl(item.url)" :class="{'active':isActive(item.url)}" v-cloak>{{item.value}}</a>
+                                        </li>
+                                    </ul>
+                                    <a href="javascript:;" class="arrow"  @click="expandToggle" v-show="quyuExpand"><span>展开</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="search-type-item">
+                        <strong class="item-hd">旅行主题:</strong>
+                        <div class="item-bd">
+                            <div class="item-child">
+                                <div class="child-block">
+                                    <ul class="list-inline child-list" ref="theme">
+                                        <li class="item" >
+                                            <a href="javascript:;" @click="changeUrl('t0')" :class="{'active':isActive('t0')}">全部</a>
+                                        </li>
+                                        <li class="item" v-for="(item,index) in fenlei.theme">
+                                            <a href="javascript:;" @click="changeUrl(item.url)" :class="{'active':isActive(item.url)}" v-cloak>{{item.value}}</a>
+                                        </li>
+                                    </ul>
+                                    <a href="javascript:;" class="arrow" @click="expandToggle" v-show="themeExpand" ><span>展开</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 排序方式 -->
+                <div class="st-linelist-con" id="paixu">
+                    <div class="st-sort-menu">
+                        <div class="sort-sum">
+                            <a href="index.html">价格</a>
+                            <select v-model="dayModel" @change="selectFunc($event)">
+                                <option value="d0" selected>出游天数</option>
+                                <option v-for="item in day" :value="item.code" v-text="item.name"></option>
+                                </option>
+                            </select>
+                            <select v-model="priceModel" @change="selectFunc($event)">
+                                <option value="p0" selected>价格</option>
+                                <option v-for="item in price" :value="item.code" v-text="item.name"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- 产品列表 -->
+                <div class="txt-line-list" id="productList" v-cloak>
+                    <ul>
+                        <li class="media list-item" v-for="(item,index) in productList">
+                            <a :href="''+item.productId">
+                                <div class="media-left">
+                                        <img :src="item.coverUrl"/>
+                                </div>
+                                <div class="media-body txt">
+                                    <p class="bt">{{item.title}}</p>
+                                    <p class="ts">标签：{{item.quyu}} {{item.theme}}</p>
+                                    <p class="ts">团期：电询</p>
+                                    <p class="ts">行程：{{item.day}}天</p>
+                                </div>
+                                <div class="booking">
+                                    <span class="jg"><em>{{item.price}}</em></span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 右边栏 -->
+            <div class="col-sm-3 rigth-side">
+
+            </div>
+        </div>
+    </div>
+    <div class="footer-br"></div>
+    <footer class="container-fluid footer">
+        <div class="tag">
+            <a>关于我们</a>
+            <a>产品特点</a>
+            <a>公司介绍</a>
+            <a>联系我们</a>
+        </div>
+        <p>Copyright© 2019 湖南大学面向对象分析第五组 联系电话：18172598351（24小时掉线）</p>
+        <p>经营范围：长沙旅游</p>
+        <p>售后电话：18172598351 </p>
+        <p>公司地址：长沙市湖南大学天马学生公寓 (公交站台名:科教新村)www.shihuan.site  桂ICP备19002329号</p>
+    </footer>
+</div>
+</body>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/vue.min.js"></script>
+<script src="../../js/vue-router.js"></script>
+<script src="https://cdn.bootcss.com/holder/2.9.4/holder.min.js"></script>
+<script src="../../js/jquery.lazyload.min.js"></script>
+<script>
+    var contextPath = "";
+
+    $(function() {
+        $("img.lazy").lazyload({effect: "fadeIn",threshold: 250});
+    });
+
+    var vm = new Vue({
+        el:'#fenlei',
+        data:{
+            quyuExpand:false,
+            themeExpand:false,
+            fenlei:{"quyu":[{"id":1,"url":"q1","value":"岳麓"},
+                    {"id":2,"url":"q2","value":"雨花"},{"id":3,"url":"q3","value":"开福"},{"id":4,"url":"q4","value":"天心"}],
+                "theme":[{"id":1,"url":"t1","value":"红色旅游"},{"id":2,"url":"t2","value":"生态旅游"},{"id":3,"url":"t3","value":"科技主题"}]},
+            price:[{'code':'p1','name':'200以下'},{'code':'p2','name':'200-500'},{'code':'p3','name':'500-1000'}],
+            priceModel:'p0',
+            day:[{'code':'d1','name':'一日游'},{'code':'d2','name':'二日游'},{'code':'d3','name':'三日游'},
+                {'code':'d4','name':'四日游'},{'code':'d5','name':'五日游'},{'code':'d6','name':'五日以上'}],
+            dayModel:'d0',
+            params:[]
+        },
+        methods:{
+            expandToggle(e){
+                var height = e.target.parentElement.parentElement.firstElementChild
+                console.log(height.clientHeight)
+
+                if(e.target.innerHTML == "展开"){
+                    console.log("expand")
+                    height.setAttribute("style","height:auto")
+                    e.target.innerHTML = "收起"
+                }else{
+                    console.log("collapse")
+                    height.removeAttribute("style")
+                    e.target.innerHTML = "展开"
+                }
+
+                console.log(this.$router)
+            },
+            isActive(url){
+                if(contextPath.indexOf(url)!=-1){
+                    return true
+                }else if(contextPath.indexOf(url.substring(0,1))==-1 && url.substring(1,2)=='0'){
+                    return true
+                }
+                return false
+            },
+            removeTag(tag){
+
+            },
+            changeUrl(url){
+                var newUrl = "";
+                var start = url.substring(0,1);
+                var list = this.params;
+                var length = list.length
+                if(length>0) {
+                    var i;
+                    //正常的tag
+                    if (url.substring(1,2) != '0') {
+                        for (i = 0; i < length; i++) {
+                            if (list[i].indexOf(start) != -1) {
+                                list[i] = url;
+                                break;
+                            }
+                        }
+                        if (i == length) {
+                            list.push(url)
+                        }
+                    } else {   //“全部”,删除对应的索引
+
+                        for (i = 0; i < length; i++) {
+                            if (list[i].indexOf(start) != -1) {
+                                list.splice(i, 1);
+                            }
+                        }
+                    }
+                    if (list.length > 0) {
+                        newUrl += list[0];
+                        var j;
+                        for (j = 1; j < list.length; j++) {
+                            newUrl += "-" + list[j]
+                        }
+                    }
+                }else{
+                    newUrl = url;
+                }
+                window.location.href = '/product/yxcp/'+newUrl
+            },
+            selectFunc(e) {
+                this.changeUrl(e.target.value)
+            }
+        },
+        computed:{
+        },
+        created:function () {
+            var that = this
+            var pathName = location.pathname
+            if(pathName.length>14){
+                contextPath = pathName.substring(14)
+            }
+            $.ajax({
+                url:'/initHref/'+contextPath,
+                dataType:'json',
+                success:function (data) {
+                    that.$data.fenlei = data
+                    // console.log(contextPath)this.$route.path
+                }
+            })
+
+
+            var path = ''
+            /*初始化 各个筛选条件 */
+            var pathName = location.pathname
+            if(pathName.length>14){
+                path = pathName.substring(14)   // 即 /house/xxxxxxxxx  截取后面的
+                var i = path.indexOf('/')
+                this.district = path.substring(0,i) //截出 城市 如 410101
+                path = path.substring(i+1)
+                var list=[]
+                if(path.length>0)
+                    list = path.split("-")      //空值也会显示，造成麻烦，所以先判断长度
+
+                this.params = list
+                for(var j = 0;j < list.length;j++){
+                    if(list[j].substring(0,1)=='p'){
+                        this.priceModel = list[j]
+                    }else if(list[j].substring(0,1)=='d'){
+                        this.dayModel = list[j]
+                    }
+                }
+            }
+        },
+        mounted:function () {
+            setTimeout(() => {
+            // this.$nextTick(function () {
+                    if(this.$refs.quyu.scrollHeight > this.$refs.quyu.clientHeight) {
+                        this.quyuExpand  = true
+                        console.log("quyuExpand")
+                    }else{
+                        console.log(this.$refs.quyu.scrollHeight)
+                    }
+                    if(this.$refs.theme.scrollHeight > this.$refs.theme.clientHeight){
+                        this.themeExpand = true
+                        console.log("themeExpand")
+                    }
+            // })
+            },10)
+        }
+    })
+
+    var vm2 = new Vue({
+        el:'#productList',
+        data:{
+            productList:""
+        },
+        methods:{
+
+        },
+        computed:{
+        },
+        created:function () {
+            var that = this
+            var pathName = location.pathname
+            if(pathName.length>14){
+                contextPath = pathName.substring(14)
+            }
+            $.ajax({
+                url:'/initHref/'+contextPath,
+                dataType:'json',
+                success:function (data) {
+                    that.$data.fenlei = data
+                    // console.log(contextPath)this.$route.path
+                }
+            })
+            $.ajax({
+                url:'/YanxueProduct/'+contextPath,
+                dataType: 'json',
+                success:function (data) {
+                    that.$data.productList = data.list
+                }
+            })
+        }
+    })
+
+</script>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/my-navbar.css">
+</head>
+<body>
+
+<div id="main">
+    <!--导航栏-->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- 下拉触发按钮 以及 商标-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">科普研学平台</a>
+            </div>
+            <!-- 适配手机，将部分栏目转至下拉导航-->
+            <div class="collapse navbar-collapse" id="collapse1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/product/kpcp/">科普产品 <span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="#">研学产品</a></li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
+    <!--主面板-->
+    <div class="container">
+        <!-- 产品列表 -->
+        <div class="col-sm-9 col-xs-12">
+            <!-- 分类索引 -->
+            <div id="fenlei" class="search-type-block">
+                <div class="search-type-item">
+                    <strong class="item-hd">所在区域:</strong>
+                    <div class="item-bd">
+                        <div class="item-child">
+                            <div  class="child-block">
+                                <ul class="list-inline child-list">
+                                    <!--                                    v-for是将当前标签所有所有元素循环-->
+                                    <li class="item" v-for="(item,index) in fenlei.quyu">
+                                        <a :href="'/product/yxcp/'+ item.url">{{item.name}}</a>
+                                    </li>
+                                </ul>
+                                <a href="javascript:;" class="arrow "><span>展开</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-type-item">
+                    <strong class="item-hd">旅行主题:</strong>
+                    <div class="item-bd">
+                        <div class="item-child">
+                            <div class="child-block">
+                                <ul class="list-inline child-list">
+                                    <!--                                    v-for是将当前标签所有所有元素循环-->
+                                    <li class="item" v-for="(item,index) in fenlei.theme">
+                                        <a :href="'/product/yxcp/'+ item.url">{{item.name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 排序方式 -->
+            <div class="st-linelist-con">
+                <div class="st-sort-menu">
+                    <div class="sort-sum">
+                        <a href="index.html">价格</a>
+                        <select>
+                            <option data-url="https://www.cscyts.com.cn/lines/hunanlvyou/">出游天数</option>
+                            <option data-url="https://www.cscyts.com.cn/lines/hunanlvyou-1-0-0-0-0-0-1">一日游</option>
+                            <option data-url="https://www.cscyts.com.cn/lines/hunanlvyou-2-0-0-0-0-0-1">二日游</option>
+                            <option data-url="https://www.cscyts.com.cn/lines/hunanlvyou-3-0-0-0-0-0-1">三日游</option>
+                            <option data-url="https://www.cscyts.com.cn/lines/hunanlvyou-4-0-0-0-0-0-1">四日游</option>
+                            <option data-url="https://www.cscyts.com.cn/lines/hunanlvyou-5-0-0-0-0-0-1">五日游</option>
+                            <option data-url="https://www.cscyts.com.cn/lines/hunanlvyou-6-0-0-0-0-0-1">六日游</option>
+                            <option data-url="https://www.cscyts.com.cn/lines/hunanlvyou-7-0-0-0-0-0-1">七日游</option>
+                            <option data-url="https://www.cscyts.com.cn/lines/hunanlvyou-8-0-0-0-0-0-1">八日游</option>
+                            <option data-url="https://www.cscyts.com.cn/lines/hunanlvyou-9-0-0-0-0-0-1">九日游</option>
+                            <option data-url="https://www.cscyts.com.cn/lines/hunanlvyou-10-0-0-0-0-0-1">十日游以上
+                            </option>
+                        </select>
+                        <select>
+                            <option data-url="index.html">价格区间</option>
+                            <option data-url="index.html">200以下</option>
+                            <option data-url="index.html">价格区间</option>
+                            <option data-url="index.html">价格区间</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品列表 -->
+            <div class="txt-line-list">
+                <ul>
+                    <li class="media list-item">
+                        <a href="index.html">
+                            <div class="media-left">
+                                <img src="../../images/2.jpg">
+                            </div>
+                            <div class="media-body txt">
+                                <p class="bt">平江石牛寨景区+杜甫墓祠汽车一日游</p>
+                                <p class="ts">团期：电询</p>
+                                <p class="ts">行程：1天</p>
+                            </div>
+                            <div class="booking">
+                                <span class="jg"><em>电询</em></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="media list-item">
+                        <a href="index.html">
+                            <div class="media-left item-left">
+                                <img src="../../images/1.jpg">
+                            </div>
+                            <div class="media-body txt">
+                                <p class="bt">平江石牛寨景区+杜甫墓祠汽车一日游</p>
+                                <p class="ts">团期：电询</p>
+                                <p class="ts">行程：1天</p>
+                            </div>
+                            <div class="booking">
+                                <span class="jg"><em>电询</em></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="media list-item">
+                        <a href="index.html">
+                            <div class="media-left item-left">
+                                <img src="../../images/2.jpg">
+                            </div>
+                            <div class="media-body txt">
+                                <p class="bt">平江石牛寨景区+杜甫墓祠汽车一日游</p>
+                                <p class="ts">团期：电询</p>
+                                <p class="ts">行程：1天</p>
+                            </div>
+                            <div class="booking">
+                                <span class="jg"><em>电询</em></span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 右边栏 -->
+        <div class="col-sm-3 rigth-side">
+
+        </div>
+    </div>
+
+    <div class="footer-br"></div>
+    <footer class="container-fluid footer">
+        <div class="tag">
+            <a>关于我们</a>
+            <a>产品特点</a>
+            <a>公司介绍</a>
+            <a>联系我们</a>
+        </div>
+        <p>Copyright© 2000-2018 长沙中国青年旅行社有限责任公司 客服电话：0731-84445222（24H）、84444666（团队）</p>
+        <p>经营范围：湖南旅游、国内旅游、入境旅游、出境旅游 许可证编号：L-HUN-CJ00031 </p>
+        <p>售后电话：0731-84599033 湖南旅游局质监所：0731-12301</p>
+        <p>公司地址：长沙市芙蓉中路三段100号湘凯石化大厦18楼 (公交站台名:候家塘南)www.cscyts.com.cn  湘ICP备11013249号</p>
+    </footer>
+</div>
+
+</body>
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/vue.min.js"></script>
+</html>

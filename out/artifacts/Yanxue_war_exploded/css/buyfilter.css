@@ -1,0 +1,94 @@
+.clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
+.clearfix { *zoom:1; }
+.clearfix:before, .clearfix:after {
+    content: '.';
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+}
+
+/*父级清除浮动- 分类检索*/
+.search-type-block {
+    clear: both;
+    width: 100%;
+    padding:0;
+    margin-bottom: 25px;
+    border: 1px solid #ebebeb;
+    border-bottom: 0;
+    background: #fff;
+}
+
+.search-type-item{
+    border-bottom: 1px solid #e6e6e6;
+    background: #f0f5fb;
+}
+
+.search-type-item .item-hd{
+    /*display: inline-block;*/
+    float: left;
+    color: #666;
+    width: 90px;
+    line-height: 24px;
+    padding: 5px 10px 5px 0;
+    text-align: right;
+    vertical-align:top;
+}
+
+.search-type-item .item-bd{
+    margin-left: 95px;
+    margin-right: 0px;
+    /*display: inline-block;*/
+    /*padding: 0 0 0 100px;*/
+}
+
+.item-child {
+    background: #fff;
+}
+
+/*每一分类行*/
+.child-block {
+    padding: 5px 20px;
+    overflow: hidden;
+    position: relative;
+}
+.child-list {
+    height: 25px;
+    padding: 0 0 0 0;
+    overflow: hidden;
+}
+.child-list .item {
+    float: left;
+    width: 100px;
+    height: 25px;
+}
+
+.child-list .item .active{
+    background-color: #3498db;
+    color: #fff;
+}
+.child-list .item .active:hover{
+    background-color: #3498db;
+}
+
+.child-list .item a {
+    float: left;
+    color: #666;
+    max-width: 100px;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 10px;
+}
+
+.child-list .item a:hover{
+    background-color: #f0f5fb;
+}
+
+ul,ol{
+    list-style: none;
+    list-style-position: inside;
+
+}

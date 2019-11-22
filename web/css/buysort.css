@@ -1,0 +1,169 @@
+.st-linelist-con {
+    float: left;
+    width: 100%;
+    overflow: hidden;
+}
+
+.st-sort-menu {
+    float: left;
+    width: 100%;
+    height: 46px;
+    margin-top: 15px;
+    background: #f9f8f8;
+}
+
+.st-sort-menu .sort-sum {
+    float: left;
+    height: 46px;
+}
+
+.st-sort-menu .sort-sum a {
+    float: left;
+    height: 46px;
+    line-height: 46px;
+    padding: 0 20px;
+    font-size: 14px;
+}
+.st-sort-menu .sort-sum select {
+    margin: 8px 5px 0 5px;
+    height: 30px;
+    border: 1px solid #ccc;
+    color: #999;
+    cursor: pointer;
+    width: 100px;
+}
+.arrow {
+    display: block;
+    color: #999;
+    height: 24px;
+    line-height: 24px;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+.down{
+}
+/*产品列表*/
+.list-item{
+    display: flex;
+    height: 146px;
+    /*padding:15px;*/
+    overflow: hidden;
+}
+.list-item a{
+    display: flex;
+    overflow: hidden;
+}
+.list-item a:hover .bt{
+    color:red;
+    text-decoration-line: underline;
+}
+
+
+.item-left{
+    height: 110px;
+    width: 190px;
+    padding:0 auto;
+    text-align: center;
+}
+.media-left img{
+    height: 110px;
+    width: 180px;
+    /*vertical-align: middle;*/
+}
+.media-body{
+    width: 70%;
+    margin-left: 2px;
+    margin-right: 100px;
+    overflow: hidden;
+}
+
+.txt-line-list{
+    width: 100%;
+    float: left;
+}
+.txt-line-list ul{
+    width: 100%;
+    float: left;
+}
+.txt-line-list ul li{
+    float: left;
+    width: 100%;
+    margin-top: 15px;
+    position: relative;
+    border: 1px solid #e5e5e5;
+}
+.txt-line-list ul li>a {
+    float: left;
+    width: 100%;
+    padding: 15px;
+    position: relative;
+}
+
+.txt-line-list ul li .txt .bt {
+    /*color: #333;*/
+    line-height: 24px;
+    overflow: hidden;
+    font-size: 20px;
+    font-weight: 600;
+    max-height: 48px;
+    margin-bottom: 5px;
+}
+
+.txt-line-list ul li .txt .ts {
+    color: #666;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.txt-line-list .booking{
+    position: absolute;
+    right: 18px;
+    width: 10%;
+    height: 110px;
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+}
+.txt-line-list .booking .jg em {
+    color: #f63;
+    font-size: 22px;
+}
+
+/*底部版权*/
+.footer-br{
+    background-color: #3498db;
+    height: 15px;
+    margin:30px 0 10px 0;
+}
+.footer{
+    float: left;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 0;
+    text-align: center;
+}
+
+.footer .tag{
+    margin-bottom: 30px;
+}
+.footer a {
+    color: #666;
+    font-size: 12px;
+    display: inline-block;
+    height: 13px;
+    line-height: 13px;
+    padding: 0 10px;
+    border-left: 2px solid #c1c1c1;
+}
+.footer a:first-child{
+    border-left: none;
+}
+.footer p{
+    color: #666;
+    font-size: 12px;
+}

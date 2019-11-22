@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传科普产品</title>
+    <link rel="stylesheet" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <link href="../../dist/summernote.css" rel="stylesheet"/>
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../dist/summernote.js"></script>
+    <script src="../../dist/lang/summernote-zh-CN.js"></script>    <!-- 中文-->
+</head>
+<body>
+    <div id="summernote"><p>Hello Summernote</p></div>
+    <button type="button" onclick="uploadRtf();">提交</button>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                lang: 'zh-CN',
+                callbacks:{
+                    onImageUpload:function (files,editor,$editable) {
+                        sendfile(files);
+                    }
+                }
+            });
+        });
+        function uploadRtf() {
+            var rtf = $('#summernote').summernote('code')
+            var data = new FormData()
+            data.append("rtfdata",rtf)
+            $.ajax({
+                url:'/UploadRtfServlet',
+                data:data,
+                type:'POST',
+                cache : false,
+                contentType : false,
+                processData : false,
+                success:function (data) {
+                    console.log(data)
+                },
+                error:function () {
+                    console.log("error")
+                }
+            })
+        }
+        function sendfile(files,editor,$editable) {
+            var data = new FormData();
+            data.append("ajaxFile",files[0]);
+            console.log(data.get("ajaxFile"))
+            $.ajax({
+                url:'/UploadImgServlet',
+                data:data,
+                type:'POST',
+                cache : false,
+                contentType : false,
+                processData : false,
+                success:function (data) {
+                    $('#summernote').summernote('insertImage',data,function ($image) {
+                        $image.attr('height','200px')
+                        $image.attr('width','200px')
+                    })
+                },
+                error:function () {
+                    console.log('error')
+                }
+            })
+        }
+    </script>
+</body>
+</html>
